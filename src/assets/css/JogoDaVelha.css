@@ -18,8 +18,8 @@
 .linha-btn button{
     padding: 50px 55px;
     background-color: transparent;
-    border: 1px solid var(--azul-tom-escuro);
-
+    border: 1px solid var(--grafite);
+    transition: 0.1s linear;
 }
 .linha-btn button:hover{
     background-color: rgba(0,0,0,.1);
