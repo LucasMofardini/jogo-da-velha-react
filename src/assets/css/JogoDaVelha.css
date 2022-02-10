@@ -1,6 +1,8 @@
 @import url(./root.css);
-
-.container-body{
+.container-all{
+    position: relative;
+}
+.container-body-jogo{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,18 +10,31 @@
     height: 100vh;
 }
 .container-jogo{
-    /* background-color: aqua; */
+    /* background-color: black; */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
 
+}
+/* .linha-btn{
+    border-bottom: 1px solid;
+} */
 .linha-btn button{
-    padding: 50px 55px;
     background-color: transparent;
     border: 1px solid var(--grafite);
     transition: 0.1s linear;
+    /* importante para nao deixar dar Tab e nem selecionar os botoes */
+    user-select: none;
+    outline: none;
+    /*--*/
+    font-size: 60px;
+    width: 150px;
+    height: 150px; 
+    /* background: blue; */
+    color: var(--grafite);
+
+    
 }
 .linha-btn button:hover{
     background-color: rgba(0,0,0,.1);
@@ -62,4 +77,34 @@
 .linha-btn#linha-3 button:nth-child(3){
     border-bottom: 0;
     border-right: 0;
+}
+.container-jogador{
+    display: flex;
+    justify-content: center;
+    align-items:baseline;
+
+    /* background-color: aqua; */
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--azul-tom-escuro);
+    position: absolute;
+
+    width: 100%;
+    margin: 0 auto;
+}
+
+.container-jogador span{
+    margin: 0 10px;
+    font-size: 20px;
+    border: 1px solid var(--azul-tom-medio);
+    padding: 5px 0;
+    width: 40px;
+    text-align: center;
+}
+@media(max-width:600px)
+{
+    .container-jogador{
+        margin-bottom: 40px;
+        position: relative;
+    }  
 }

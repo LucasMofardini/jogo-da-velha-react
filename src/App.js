@@ -3,6 +3,7 @@ import EstruturaJogoDaVelha from './components/EstruturaJogoDaVelha';
 function App() {
   return (
     <>
+
       <EstruturaJogoDaVelha />
     </>
   );
