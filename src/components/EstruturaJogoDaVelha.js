@@ -5,38 +5,50 @@ export default function EstruturaJogoDaVelha() {
     const xis = 'x';
     const bolinha = 'o';
     const [jogadorAtivo, setJogadorAtivo] = useState(xis);
-    const [sequencia, setSequencia] = useState([]);
+    const [rodada, setRodada] = useState([]);
 
     useEffect(() => {
-        console.log(sequencia);
+
+
+        console.log(rodada);
+
+
 
     });
+
     function logicaClick(event) {
         event.preventDefault();
         selecionarNoJogo(event);
 
     }
     function selecionarNoJogo(event) {
-        /* Logica */
-        /* Se nao tiver valor no target ele coloca valor */
-        if (!event.target.value) {
+        /* A função precisa : 
+            - Setar a o click na rodada,
+            - Atualizar a rodada,
+            - Mudar o jogador,
+        */
+        /* Toda vez que voce clica, ele PEGA o Aria-Label e pega o Jogador ativo. 
+        Eu preciso fazer > Depois de clicado ele Seta A rodada e vai colocar o aria-label e jogador ativo no seu lugar  */
+        let ariaLabel = +event.target.ariaLabel;
 
-            event.target.value = jogadorAtivo;
-            event.target.innerText = jogadorAtivo;
-
-            let ariaLabel = +event.target.ariaLabel;
-
-            setSequencia([...sequencia,
-
+        setRodada([
+            ...rodada,
             { jogadorAtivo, ariaLabel }
+        ]);
+        atualizaRodada(rodada);
 
-            ]);
+        /* Depois muda o jogador */
 
-            // console.log(sequencia);
-            /* Depois muda o jogador */
+        mudarOJogador(jogadorAtivo);
 
-            mudarOJogador(jogadorAtivo);
-        }
+
+    }
+    function atualizaRodada(rodada) {
+        // event.target.value = jogadorAtivo;
+        // event.target.innerText = jogadorAtivo;
+
+        // Precisa pegar a rodada e atualizar nos btn
+
 
     }
     function mudarOJogador(jogadorAtivo) {
@@ -50,10 +62,18 @@ export default function EstruturaJogoDaVelha() {
         }
 
     }
+    function resetarOJogo() {
+        setRodada([]);
+        atualizaRodada();
+    }
     return (
         <div className='container-all'>
             <div className='container-jogador'>
-                <h2>Vez de jogar : </h2><span>{jogadorAtivo.toLocaleUpperCase()}</span>
+                <h2>
+                    Vez de jogar :
+                </h2>
+                <span>{jogadorAtivo.toLocaleUpperCase()}</span>
+
             </div>
             <div className="container-body-jogo">
                 <div className='container-jogo'>
@@ -73,7 +93,11 @@ export default function EstruturaJogoDaVelha() {
                         <button onClick={logicaClick} value="" aria-label='9'> </button>
                     </div>
                 </div>
+                <button onClick={resetarOJogo}> Resetar </button>
+
             </div>
-        </div>
+
+        </div >
+
     );
 }
