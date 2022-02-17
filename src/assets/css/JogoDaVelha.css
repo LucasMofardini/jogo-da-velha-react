@@ -17,6 +17,9 @@
     justify-content: center;
 
 }
+.container-jogo.game-over{
+    opacity: 0.8;
+}
 /* .linha-btn{
     border-bottom: 1px solid;
 } */
@@ -57,6 +60,11 @@
     background-color: var(--preto);
     cursor: not-allowed;
 }
+.game-over .linha-btn button{
+    cursor: not-allowed;
+
+}
+
 /* Linha 1 */
 .linha-btn button:nth-child(1){
     border-top: 0;
@@ -121,6 +129,19 @@
     padding: 5px 0;
     width: 40px;
     text-align: center;
+}
+.container-botao-resetar{
+    display: flex;
+    justify-content: center;
+
+    /* background-color: aqua; */
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--azul-tom-escuro);
+    position: absolute;
+
+    width: 100%;
+    margin: 0 auto;
 }
 @media(max-width:600px)
 {

@@ -7,26 +7,30 @@ export default function EstruturaJogoDaVelha() {
     //  
     const rodadaInicial = Array(9).fill("");
     const [jogadorAtivo, setJogadorAtivo] = useState(xis);
+    const [vencedor, setJogadorVencedor] = useState();
     const [rodada, setRodada] = useState(rodadaInicial);
 
 
-    useEffect(() => {
-        console.log(rodada)
-    })
+    useEffect(verificaGanhador, [rodada]);
 
-    function logicaClick(event, index) {
-        console.log(event);
+    function logicaClick(index) {
+        console.log(index);
 
+        if (rodada[index] !== "") {
+            return null;
+        }
+        if (vencedor) {
+            return null;
+        }
         setRodada(
-            rodada.map((item, itemIndex, key) => {
-                console.log(' item : ', index);
-                console.log('item index : ', itemIndex);
-                console.log('key ', key)
+            rodada.map((item, itemIndex) => {
                 // return itemIndex === index ? jogadorAtivo : item
                 if (itemIndex === index) {
+                    // console.log(' item : ', index);
+                    // console.log('item index : ', itemIndex);
 
-                    // ele so pode setar se o jogador nao for o mesmo
                     return (jogadorAtivo);
+
 
                 } else {
                     return (item);
@@ -40,7 +44,32 @@ export default function EstruturaJogoDaVelha() {
 
 
     }
+    function verificaGanhador() {
+        // 8 maneiras de um jogador vencer
+        const arrayFormasDeVencer = [
+            //Linhas
+            [rodada[0], rodada[1], rodada[2]],
+            [rodada[3], rodada[4], rodada[5]],
+            [rodada[6], rodada[7], rodada[8]],
+            //Verticais
+            [rodada[0], rodada[3], rodada[6]],
+            [rodada[1], rodada[4], rodada[7]],
+            [rodada[2], rodada[5], rodada[6]],
+            //Diagonais
+            [rodada[0], rodada[4], rodada[8]],
+            [rodada[2], rodada[4], rodada[6]],
+        ];
 
+        arrayFormasDeVencer.forEach((formasDeVencer) => {
+            if (formasDeVencer.every(forma => forma === bolinha)) {
+                setJogadorVencedor(bolinha);
+            }
+            if (formasDeVencer.every(forma => forma === xis)) {
+                setJogadorVencedor(xis);
+
+            }
+        });
+    }
     function mudarOJogador() {
         // console.log(jogadorAtivo);
 
@@ -54,6 +83,7 @@ export default function EstruturaJogoDaVelha() {
     }
     function resetarOJogo() {
         setRodada(rodadaInicial);
+        setJogadorVencedor();
     }
     return (
 
@@ -61,13 +91,15 @@ export default function EstruturaJogoDaVelha() {
 
             <div className='container-jogador'>
                 <h2>
-                    Vez de jogar :
+                    {vencedor ? `O Vencedor é : ` : 'Vez de jogar :'}
                 </h2>
-                <span>{jogadorAtivo.toLocaleUpperCase()}</span>
+                <span> {vencedor ? vencedor.toLocaleUpperCase() : jogadorAtivo.toLocaleUpperCase()}</span>
 
             </div>
+
             <div className="container-body-jogo">
-                <div className='container-jogo'>
+                <div className={`container-jogo ${vencedor ? "game-over" : ""} `}>
+
                     <div className='linha-btn'>
                         {
                             rodada.map((item, index) => {
@@ -83,10 +115,14 @@ export default function EstruturaJogoDaVelha() {
                                 );
                             })
                         }
+
+                    </div>
+                    <div className="container-botao-resetar">
+                        {vencedor ? <button onClick={resetarOJogo}> Resetar </button> : ""}
+
                     </div>
                 </div>
 
-                <button onClick={resetarOJogo}> Resetar </button>
 
             </div>
 
