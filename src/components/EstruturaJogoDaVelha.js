@@ -95,6 +95,9 @@ export default function EstruturaJogoDaVelha() {
                 </h2>
                 <span> {vencedor ? vencedor.toLocaleUpperCase() : jogadorAtivo.toLocaleUpperCase()}</span>
 
+                <div className="container-botao-resetar">
+                    {vencedor ? <button onClick={resetarOJogo}> Resetar Partida </button> : ""}
+                </div>
             </div>
 
             <div className="container-body-jogo">
@@ -117,16 +120,13 @@ export default function EstruturaJogoDaVelha() {
                         }
 
                     </div>
-                    <div className="container-botao-resetar">
-                        {vencedor ? <button onClick={resetarOJogo}> Resetar </button> : ""}
 
-                    </div>
                 </div>
 
 
             </div>
+            <footer><a target="_blank" href="https://github.com/lucasmofardini">@lucasmofardini</a></footer>
 
         </div >
-
     );
 }
