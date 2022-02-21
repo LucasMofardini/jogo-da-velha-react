@@ -69,11 +69,17 @@ export default function EstruturaJogoDaVelha() {
                 setJogadorVencedor(xis);
                 console.log(formasDeVencer)
             }
-            checkEmpate();
+            if (!vencedor) {
+                checkEmpate();
+
+            }
+
+
         });
 
     }
     function checkEmpate() {
+
         if (rodada.every(item => item !== "")) {
             setJogadorVencedor("Empate");
         }
