@@ -205,4 +205,25 @@ footer a{
     .linha-btn button{
         width: calc(100%/3);
     }
+    
+ 
+
+}
+@media(max-width:500px){
+    .linha-btn{
+        width: 500px;
+
+    }
+    .linha-btn button{
+        width: calc(100%/3);
+    }
+}
+@media(max-width:400px){
+    .linha-btn{
+        width: 400px;
+
+    }
+    .linha-btn button{
+        width: calc(100%/3);
+    }
 }
